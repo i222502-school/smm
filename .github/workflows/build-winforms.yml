@@ -1,0 +1,38 @@
+# WinForms targets net8.0-windows and must build on a Windows runner.
+# Linux/macOS agents cannot compile this project; use windows-latest (or windows-2022).
+
+name: Build WinForms app
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "8.0.x"
+
+      - name: Restore
+        run: dotnet restore SocietiesManagementSystem.sln
+
+      - name: Publish (Release)
+        run: >
+          dotnet publish SocietiesManagementSystem/SocietiesManagementSystem.csproj
+          --configuration Release
+          --output ./artifacts/publish
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: SocietiesManagementSystem-win-x64
+          path: artifacts/publish/
