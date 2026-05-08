@@ -14,6 +14,16 @@ namespace SocietiesManagementSystem.Tests;
 public class AppSessionTests
 {
     [Fact]
+    public void CurrentUser_CanBeSetAndRead()
+    {
+        var user = new SessionUser { UserId = 99, Username = "u99" };
+
+        AppSession.CurrentUser = user;
+
+        Assert.Same(user, AppSession.CurrentUser);
+    }
+
+    [Fact]
     public void SignOut_ClearsCurrentUser()
     {
         AppSession.CurrentUser = new SessionUser { UserId = 1, Username = "student1" };
@@ -21,6 +31,21 @@ public class AppSessionTests
         AppSession.SignOut();
 
         Assert.Null(AppSession.CurrentUser);
+    }
+}
+
+public class SessionUserTests
+{
+    [Fact]
+    public void NewSessionUser_HasExpectedDefaultValues()
+    {
+        var user = new SessionUser();
+
+        Assert.Equal(0, user.UserId);
+        Assert.Equal(string.Empty, user.Username);
+        Assert.Equal(string.Empty, user.FullName);
+        Assert.Equal(string.Empty, user.Email);
+        Assert.Equal(string.Empty, user.UserType);
     }
 }
 
@@ -160,8 +185,189 @@ public class FormConstructorTests
     public void MemberSocietyForm_Constructor_TestCaseExists() => Assert.True(true);
 }
 
+public class LoginFormMethodTests
+{
+    [Fact(Skip = "Invokes DB-backed auth and WinForms UI interaction.")]
+    public void TryLogin_TestCaseExists() => Assert.True(true);
+}
+
+public class StudentPortalFormMethodTests
+{
+    [Fact(Skip = "Private UI wiring method requiring WinForms runtime.")]
+    public void BuildBrowseTab_TestCaseExists() => Assert.True(true);
+
+    [Fact(Skip = "Private UI wiring method requiring WinForms runtime.")]
+    public void BuildRequestTab_TestCaseExists() => Assert.True(true);
+
+    [Fact(Skip = "Private UI wiring method requiring WinForms runtime.")]
+    public void BuildMembershipsTab_TestCaseExists() => Assert.True(true);
+
+    [Fact(Skip = "Private UI wiring method requiring WinForms runtime.")]
+    public void OpenWorkspace_TestCaseExists() => Assert.True(true);
+
+    [Fact(Skip = "Private UI wiring method requiring WinForms runtime.")]
+    public void BuildEventsTab_TestCaseExists() => Assert.True(true);
+
+    [Fact(Skip = "Private UI wiring method requiring WinForms runtime.")]
+    public void BuildTicketsTab_TestCaseExists() => Assert.True(true);
+
+    [Fact(Skip = "Private UI wiring method requiring WinForms runtime.")]
+    public void BuildAnnounceTab_TestCaseExists() => Assert.True(true);
+
+    [Fact(Skip = "Private UI wiring method requiring WinForms runtime.")]
+    public void BuildMyTasksTab_TestCaseExists() => Assert.True(true);
+
+    [Fact(Skip = "Uses repository calls and WinForms controls.")]
+    public void ReloadAll_TestCaseExists() => Assert.True(true);
+
+    [Fact(Skip = "Uses repository calls and WinForms controls.")]
+    public void ReloadBrowse_TestCaseExists() => Assert.True(true);
+
+    [Fact(Skip = "Uses repository calls and WinForms controls.")]
+    public void ReloadMemberships_TestCaseExists() => Assert.True(true);
+
+    [Fact(Skip = "Uses repository calls and WinForms controls.")]
+    public void ReloadEvents_TestCaseExists() => Assert.True(true);
+
+    [Fact(Skip = "Uses repository calls and WinForms controls.")]
+    public void ReloadTickets_TestCaseExists() => Assert.True(true);
+
+    [Fact(Skip = "Uses repository calls and WinForms controls.")]
+    public void ReloadAnnounce_TestCaseExists() => Assert.True(true);
+
+    [Fact(Skip = "Uses repository calls and WinForms controls.")]
+    public void ReloadMyTasks_TestCaseExists() => Assert.True(true);
+}
+
+public class AdminDashboardFormMethodTests
+{
+    [Fact(Skip = "Private UI method requiring WinForms runtime.")]
+    public void BuildUsersTab_TestCaseExists() => Assert.True(true);
+
+    [Fact(Skip = "Private UI method requiring WinForms runtime.")]
+    public void BuildSocietiesTab_TestCaseExists() => Assert.True(true);
+
+    [Fact(Skip = "Private UI method requiring WinForms runtime.")]
+    public void BuildEventsTab_TestCaseExists() => Assert.True(true);
+
+    [Fact(Skip = "Private UI method requiring WinForms runtime.")]
+    public void BuildActivityTab_TestCaseExists() => Assert.True(true);
+
+    [Fact(Skip = "Private UI method requiring WinForms runtime.")]
+    public void BuildReportsTab_TestCaseExists() => Assert.True(true);
+
+    [Fact(Skip = "Uses repository calls and WinForms controls.")]
+    public void ReloadAll_TestCaseExists() => Assert.True(true);
+
+    [Fact(Skip = "Uses repository calls and WinForms controls.")]
+    public void ReloadUsers_TestCaseExists() => Assert.True(true);
+
+    [Fact(Skip = "Uses repository calls and WinForms controls.")]
+    public void ReloadSocieties_TestCaseExists() => Assert.True(true);
+
+    [Fact(Skip = "Uses repository calls and WinForms controls.")]
+    public void ReloadPendingEvents_TestCaseExists() => Assert.True(true);
+
+    [Fact(Skip = "Uses repository calls and WinForms controls.")]
+    public void ReloadActivity_TestCaseExists() => Assert.True(true);
+}
+
+public class MemberSocietyFormMethodTests
+{
+    [Fact(Skip = "Uses repository calls and WinForms controls.")]
+    public void ReloadRoster_TestCaseExists() => Assert.True(true);
+
+    [Fact(Skip = "Uses repository calls and WinForms controls.")]
+    public void ReloadTasks_TestCaseExists() => Assert.True(true);
+
+    [Fact(Skip = "Uses repository calls and WinForms controls.")]
+    public void ReloadAnnounce_TestCaseExists() => Assert.True(true);
+}
+
+public class SocietyLeadershipFormMethodTests
+{
+    [Fact(Skip = "Uses repository/DB calls and WinForms controls.")]
+    public void LoadProfile_TestCaseExists() => Assert.True(true);
+
+    [Fact(Skip = "Private UI method requiring WinForms runtime.")]
+    public void BuildProfileTab_TestCaseExists() => Assert.True(true);
+
+    [Fact(Skip = "Private UI method requiring WinForms runtime.")]
+    public void BuildMembershipTab_TestCaseExists() => Assert.True(true);
+
+    [Fact(Skip = "Uses repository calls and WinForms controls.")]
+    public void ResolvePending_TestCaseExists() => Assert.True(true);
+
+    [Fact(Skip = "Private UI method requiring WinForms runtime.")]
+    public void BuildMembersTab_TestCaseExists() => Assert.True(true);
+
+    [Fact(Skip = "Private UI method requiring WinForms runtime.")]
+    public void BuildEventsTab_TestCaseExists() => Assert.True(true);
+
+    [Fact(Skip = "Uses repository calls and WinForms controls.")]
+    public void AddEvent_TestCaseExists() => Assert.True(true);
+
+    [Fact(Skip = "Uses repository calls and WinForms controls.")]
+    public void UpdateSelectedEvent_TestCaseExists() => Assert.True(true);
+
+    [Fact(Skip = "Uses repository calls and WinForms controls.")]
+    public void CancelSelectedEvent_TestCaseExists() => Assert.True(true);
+
+    [Fact(Skip = "Private UI method requiring WinForms runtime.")]
+    public void BuildTasksTab_TestCaseExists() => Assert.True(true);
+
+    [Fact(Skip = "Uses repository calls and WinForms controls.")]
+    public void LoadAssignees_TestCaseExists() => Assert.True(true);
+
+    [Fact(Skip = "Private UI method requiring WinForms runtime.")]
+    public void BuildAnnounceTab_TestCaseExists() => Assert.True(true);
+
+    [Fact(Skip = "Private UI method requiring WinForms runtime.")]
+    public void BuildReportsTab_TestCaseExists() => Assert.True(true);
+
+    [Fact(Skip = "Uses repository calls and WinForms controls.")]
+    public void ReloadGrids_TestCaseExists() => Assert.True(true);
+
+    [Fact(Skip = "Static helper method requires WinForms grid context.")]
+    public void HideColumn_TestCaseExists() => Assert.True(true);
+}
+
 public class AuthServiceTests
 {
+    [Fact]
+    public void RegisterStudent_WithBlankUsername_ReturnsInvalidUsernameMessage()
+    {
+        var sut = new AuthService();
+
+        var result = sut.RegisterStudent("   ", "123456", "a@b.com", "A");
+
+        Assert.False(result.ok);
+        Assert.Equal("Invalid username.", result.message);
+    }
+
+    [Fact]
+    public void RegisterStudent_WithTooLongUsername_ReturnsInvalidUsernameMessage()
+    {
+        var sut = new AuthService();
+        var tooLong = new string('a', 51);
+
+        var result = sut.RegisterStudent(tooLong, "123456", "a@b.com", "A");
+
+        Assert.False(result.ok);
+        Assert.Equal("Invalid username.", result.message);
+    }
+
+    [Fact]
+    public void RegisterStudent_WithShortPassword_ReturnsPasswordValidationMessage()
+    {
+        var sut = new AuthService();
+
+        var result = sut.RegisterStudent("student1", "123", "a@b.com", "A");
+
+        Assert.False(result.ok);
+        Assert.Equal("Password must be at least 6 characters.", result.message);
+    }
+
     [Fact(Skip = "Requires database integration (SqlConnectionFactory).")]
     public void Login_TestCaseExists() => Assert.True(true);
 
